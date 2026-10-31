@@ -39,7 +39,8 @@ def linear_regression(X,y,w,b):
         b=b-rate*d_b
     w=w/(stand.reshape(-1,1))   #我吃柠檬！居然没发现w/stand会扩大矩阵！
     #print(w)
-    b=b-np.dot(w.reshape((1,-1)),means)
+    b=b-np.dot(w.reshape((1,-1)),means) #我去，发现坑点，means形状居然是（2,），因为这是一维数组,不是列向量
+                                        # 写的时候恰巧写对了，写后面算法时才发现这个坑点
     return w,b
 
 w_end,b_end=linear_regression(X,y,w,b)
